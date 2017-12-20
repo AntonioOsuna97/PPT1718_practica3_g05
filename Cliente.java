@@ -21,23 +21,32 @@ import java.net.UnknownHostException;
  * 
  * @author Juan Carlos Cuevas Martínez y antonio
  */
+
+/* 
+ * Hay dos modos de conseguir hilos de ejecución (threads) en Java. Una es implementando el interfaz Runnable,
+ * la otra es extender la clase Thread.
+ * La clase cliente implementa el interfaz Runnable. La implementación del interfaz Runnable es la forma habitual de crear hilos.
+ * En dicho interfaz podemos destacar el método run() que constituye el cuerpo de un hilo en ejecución. 
+ */
 public class Cliente implements Runnable{
- 
+    //Variables
     private String mId="";
     
+    //Contructor de cliente
     public Cliente(String id){
         mId=id;
     }
     
-
+    //Método run
     public synchronized void run() {
    
         try{       
+            //Determinamos la dirección IP de un host dando un nombre.
             InetAddress destination = InetAddress.getByName("www10.ujaen.es");
             System.out.println("-------------------\r\nIniciando cliente "+mId+"\r\n--------------------");
             
             System.out.println("Conectando con socket "+destination.toString());
-            
+            //Creamos el socket
             Socket socket = new Socket(destination,80);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
