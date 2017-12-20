@@ -1,0 +1,16 @@
+Para la comprobación de los codigos de error:
+Iniciamos nuestro servidor en netbeans
+
+Después, iniciamos cliente telnet
+Nos conectamos con:
+o localhost [puerto]
+Utilizamos el puerto que hemos puesto, es decir, el puerto 
+o localhost 81
+
+Y finalmente, introducimos lo siguiente para las comprobaciones:
+
+GET / HTTP/1.1 
+host: localhost
+
+GET / HTTP/1.2
+host: www.ujaen.es
