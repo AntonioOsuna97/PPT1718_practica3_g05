@@ -1,0 +1,39 @@
+Nuestro servidor va a responder solo al método GET. Tiene
+que llevar la cabecera HOST.
+Devolver si está el estado 200.
+Devolver 4 tipos de errores 404,400...
+
+Debemos tener dos recursos en el servidor
+Una pagina con la imagen de la UJA.
+
+Necesidad de cabeceras como:
+Connection, Content-Type, Date, 
+
+Un analisis de wireshark
+Un post al recurso index.html
+Get a un recurso no existente
+
+
+JAVA
+SEMINARIO INTERFAZ CON SOCKET
+Control de errores con try y catch
+
+
+Punto 3.4 es opcional
+Punto 3.5 es opcional
+Punto 3.3 es opcional
+Apartado 4 de la práctica 3 es opcional
+
+
+
+Nuestro codigo se encotrará en la clase httpsSocketConnection
+//Mensaje legible
+public static string http_OK=  (Ver código profesor)
+
+linea 43 --> output --> escribe parte html
+Si ponemos localhost en el buscador, nos aparece hola
+
+El cliente envia GET/ HTTP1.1
+Host: localhost ... (Ventana de comandos)
+
+

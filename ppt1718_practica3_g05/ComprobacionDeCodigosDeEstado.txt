@@ -1,0 +1,61 @@
+Para la comprobación de los codigos de error:
+Iniciamos nuestro servidor en netbeans
+
+Después, iniciamos cliente telnet
+Nos conectamos con:
+o localhost [puerto]
+Utilizamos el puerto que hemos puesto, es decir, el puerto 
+o localhost 81
+
+Y finalmente, introducimos lo siguiente para las comprobaciones:
+
+POST /index.html HTTP/1.1
+(ERROR 405)
+
+GET /index.html HTTP/1.1 
+(200 OK)
+
+GET /pepe.html HTTP/1.1 
+(Error404 no encontrado)
+
+GET / HTTP/1.2
+host: www.ujaen.es
+(Error505 version)
+
+GET HTTP1.1
+(ERROR400 CLIENTE)
+
+
+Apunte sobre la practica
+/* Método similar para leer el recurso (Practica)
+    private static byte[] readBytesFromFile(String filePath) {
+
+        FileInputStream fileInputStream = null;
+        byte[] bytesArray = null;
+
+        try {
+
+            File file = new File(filePath);
+            bytesArray = new byte[(int) file.length()];
+
+            //read file into bytes[]
+            fileInputStream = new FileInputStream(file);
+            fileInputStream.read(bytesArray);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        return bytesArray;
+
+    }
+    */
