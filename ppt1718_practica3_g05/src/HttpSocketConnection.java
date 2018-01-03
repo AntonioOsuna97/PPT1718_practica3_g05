@@ -169,7 +169,7 @@ public class HttpSocketConnection implements Runnable {
             if(outmesg.equals("HTTP/1.1 200")){
             //Cabecera content-length  -->El tamaño del contenido de la petición en bytes
             //Para esta cabecera deberemos obtener el valor en bytes de nuestro outdataRecurso, para ello utilizaremos length
-            contentLength="Content-Length: "+ outdataRecurso.length + " \r\n";  
+            contentLength="Content-Length: "+ String.valueOf(outdataRecurso.length) + " \r\n";  
            
             //Connection controla si la conexión de red permanece abierta después de que finalice la transacción actual.
             //Si el valor enviado es keep-alive, la conexión es persistente y no se cierra, lo que permite 
@@ -207,14 +207,17 @@ public class HttpSocketConnection implements Runnable {
                
                
                //Recurso
+               if(outdataRecurso!=null){
                output.write(outdataRecurso);
-               
+               }
            }else{
                
                 //Linea de estado
                output.write(outdata);
-               //Recurso
+               //Tenemos que quitar el Recurso ya que aquí aparece nulo y nos sale excepcion
+               if(outdataRecurso!=null){
                output.write(outdataRecurso);
+               }
            }
             
             
@@ -244,12 +247,14 @@ public class HttpSocketConnection implements Runnable {
      * @return los bytes del archivo o null si éste no existe
      */
     
+    /*
     private byte[] leerRecurso(String resourceFile){        
         //./ es para el directorio
         File f= new File("./"+resourceFile);
         byte[] bytesArray = null;
+        FileInputStream fis=null;
         try{
-       FileInputStream fis = new FileInputStream (f);
+       fis = new FileInputStream (f);
        bytesArray = new byte[(int) f.length()];
        fis.read(bytesArray);
        BufferedInputStream bis = new BufferedInputStream(fis);
@@ -258,6 +263,33 @@ public class HttpSocketConnection implements Runnable {
         }catch(IOException e) {
             e.printStackTrace();
         }  
+       return bytesArray;
+    }*/
+    
+     private byte[] leerRecurso(String resourceFile){        
+        //./ es para el directorio
+        File f= new File("./"+resourceFile);
+        byte[] bytesArray = null;
+        FileInputStream fis=null;
+        try{
+       fis = new FileInputStream (f);
+       bytesArray = new byte[(int) f.length()];
+       fis.read(bytesArray);
+      // BufferedInputStream bis = new BufferedInputStream(fis);
+      // bis.read(bytesArray, 0 , bytesArray.length);
+
+        }catch(IOException e) {
+        }  finally{
+            if(fis !=null){
+                try{
+                    fis.close();
+                }catch(IOException e){
+                    e.printStackTrace();
+                    
+                }
+               
+            }
+        }
        return bytesArray;
     }
     

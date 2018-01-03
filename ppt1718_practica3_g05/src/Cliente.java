@@ -1,8 +1,4 @@
-﻿/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -38,6 +34,7 @@ public class Cliente implements Runnable{
     }
     
     //Método run
+    @Override
     public synchronized void run() {
    
         try{       
